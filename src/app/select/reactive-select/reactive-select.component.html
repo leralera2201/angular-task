@@ -1,0 +1,23 @@
+<a routerLink="..">Go to templates forms</a>
+<form [formGroup]="formSelect">
+  <div>Get user by id</div>
+  <select name="select" [formControl]="select" (change)="getUserById()">
+    <option *ngFor="let user of users" [value]="user.id">{{user.id}}</option>
+  </select>
+  <div *ngIf="user">
+    {{user.name}} {{user.email}}
+  </div>
+</form>
+<form [formGroup]="form" (ngSubmit)="getAllPosts()" style="margin-top: 30px">
+  <input type="text" [formControl]="name" [ngClass]="{red: name.errors?.badWord}">
+  <p *ngIf="name.errors?.badWord" class="red-color">Please, remove bad word</p>
+  <button style="display: block" [disabled]="form.invalid">Get Posts</button>
+
+</form>
+
+<div *ngFor="let post of posts">
+  {{post.title | uppercase}}  {{post.body | lowercase}}
+  <hr>
+</div>
+
+<div *ngIf="form.touched && posts.length === 0">{{message}}</div>

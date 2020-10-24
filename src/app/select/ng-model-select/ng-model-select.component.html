@@ -1,0 +1,25 @@
+<a routerLink="reactive">Go to reactive forms</a>
+<form #form="ngForm">
+  <div>Get user by id</div>
+  <select name="select" [(ngModel)]="idUser" (change)="getUserById()">
+    <option *ngFor="let user of users" [value]="user.id">{{user.id}}</option>
+  </select>
+  <div *ngIf="user">
+    {{user.name}} {{user.email}}
+  </div>
+</form>
+
+
+<form #myForm="ngForm" style="margin-top: 30px">
+
+<input type="text" name="name" [(ngModel)]="name" placeholder="Enter username" required>
+<button [disabled]="!myForm.valid" (click)="getAllPosts(name, myForm)">Give Posts of User</button>
+
+  <div *ngFor="let post of posts">
+    {{post.title | uppercase}}  {{post.body | lowercase}}
+    <hr>
+  </div>
+
+  <div *ngIf="myForm.submitted && posts.length === 0">{{message}}</div>
+
+</form>

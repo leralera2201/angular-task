@@ -1,0 +1,9 @@
+
+  <h3>{{user.name}}</h3>
+  <h3>{{user.email}}</h3>
+  <button [routerLink]="user.id" [state]="{user: user}">Go to user detail</button>
+
+  <button *ngIf="userPosts.length === 0" (click)="getAllPosts(user.id)">Show all posts</button>
+  <button *ngIf="userPosts.length > 0" (click)="hidePosts()">Hide all posts</button>
+  <app-post *ngFor="let post of userPosts" [post]="post"></app-post>
+  <hr>

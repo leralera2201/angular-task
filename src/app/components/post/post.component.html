@@ -1,0 +1,8 @@
+<div>
+  <h5>{{post.title}}</h5>
+  <p>{{post.body}}</p>
+  <button *ngIf="postComments.length === 0" (click)="getComments(post.id)">Get all comments</button>
+  <button *ngIf="postComments.length > 0" (click)="hideComments()">Hide all comments</button>
+  <app-comment *ngFor="let comment of postComments" [comment]="comment"></app-comment>
+  <br/>
+</div>
